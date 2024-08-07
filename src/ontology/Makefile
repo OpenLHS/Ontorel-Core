@@ -10,7 +10,7 @@
 # More information: https://github.com/INCATools/ontology-development-kit/
 
 # Fingerprint of the configuration file when this Makefile was last generated
-CONFIG_HASH=                c3c0b3c9da449badfe2b6d86a228c6e096f78556538a8c3b10765b08ca742dcd
+CONFIG_HASH=                8223d5e0a1a26c48145ac4447c45d1f0587f4db6b682815b59632b1123aa510a
 
 
 # ----------------------------------------
@@ -44,8 +44,8 @@ REPORT_FAIL_ON =            None
 REPORT_LABEL =              -l true
 REPORT_PROFILE_OPTS =       
 OBO_FORMAT_OPTIONS =        
-SPARQL_VALIDATION_CHECKS =  owldef-self-reference iri-range label-with-iri multiple-replaced_by dc-properties 
-SPARQL_EXPORTS =            basic-report class-count-by-prefix edges xrefs obsoletes synonyms 
+SPARQL_VALIDATION_CHECKS =  owldef-self-reference iri-range label-with-iri multiple-replaced_by 
+SPARQL_EXPORTS =            base-classes-report base-properties-report base-annotations-report base-dataproperties-report 
 ODK_VERSION_MAKEFILE =      v1.5.1
 
 TODAY ?=                    $(shell date +%Y-%m-%d)
@@ -59,7 +59,7 @@ EDIT_PREPROCESSED =         $(TMPDIR)/$(ONT)-preprocess.owl
 
 FORMATS = $(sort  owl owl)
 FORMATS_INCL_TSV = $(sort $(FORMATS) tsv)
-RELEASE_ARTEFACTS = $(sort $(ONT)-full $(ONT)-base )
+RELEASE_ARTEFACTS = $(sort $(ONT)-full )
 
 ifeq ($(ODK_DEBUG),yes)
 ODK_DEBUG_FILE = debug.log
@@ -242,10 +242,10 @@ endif
 # ----------------------------------------
 
 $(REPORTDIR)/$(SRC)-obo-report.tsv: $(SRCMERGED) | $(REPORTDIR)
-	$(ROBOT) report -i $< $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) --fail-on $(REPORT_FAIL_ON) --base-iri $(URIBASE)/ONTOREL-CORE_ --base-iri $(URIBASE)/Ontorel-Core --print 5 -o $@
+	$(ROBOT) report -i $< $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) --fail-on $(REPORT_FAIL_ON) --print 5 -o $@
 
 $(REPORTDIR)/%-obo-report.tsv: % | $(REPORTDIR)
-	$(ROBOT) report -i $< $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) --fail-on $(REPORT_FAIL_ON) --base-iri $(URIBASE)/ONTOREL-CORE_ --base-iri $(URIBASE)/Ontorel-Core --print 5 -o $@
+	$(ROBOT) report -i $< $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) --fail-on $(REPORT_FAIL_ON) --print 5 -o $@
 
 check_for_robot_updates:
 	echo "You are not using a custom profile, so you are getting the joy of the latest ROBOT report!"
@@ -437,7 +437,7 @@ endif
 # Release artefacts: main release artefacts
 # ----------------------------------------
 
-$(ONT).owl: $(ONT)-base.owl
+$(ONT).owl: $(ONT)-full.owl
 	$(ROBOT) annotate --input $< --ontology-iri $(URIBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
 		convert -o $@.tmp.owl && mv $@.tmp.owl $@
 
@@ -455,17 +455,6 @@ ROBOT_RELEASE_IMPORT_MODE=$(ROBOT) merge --input $<
 # ROBOT pipeline that removes imports, then merges components. This is for release artefacts that start from "base"
 ROBOT_RELEASE_IMPORT_MODE_BASE=$(ROBOT) remove --input $< --select imports --trim false merge $(patsubst %, -i %, $(OTHER_SRC)) 
 
-# base: A version of the ontology that does not include any externally imported axioms.
-$(ONT)-base.owl: $(EDIT_PREPROCESSED) $(OTHER_SRC) $(IMPORT_FILES)
-	$(ROBOT_RELEASE_IMPORT_MODE) \
-	reason --reasoner ELK --equivalent-classes-allowed asserted-only --exclude-tautologies structural --annotate-inferred-axioms False \
-	relax \
-	reduce -r ELK \
-	remove --base-iri $(URIBASE)/ONTOREL-CORE --axioms external --preserve-structure false --trim false \
-	$(SHARED_ROBOT_COMMANDS) \
-	annotate --link-annotation http://purl.org/dc/elements/1.1/type http://purl.obolibrary.org/obo/IAO_8000001 \
-		--ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
-		--output $@.tmp.owl && mv $@.tmp.owl $@
 # Full: The full artefacts with imports merged, reasoned.
 $(ONT)-full.owl: $(EDIT_PREPROCESSED) $(OTHER_SRC) $(IMPORT_FILES)
 	$(ROBOT_RELEASE_IMPORT_MODE) \

@@ -2,6 +2,7 @@
 <rdf:RDF xmlns="http://purl.obolibrary.org/obo/Ontorel-Core/Ontorel-Core-full.owl#"
      xml:base="http://purl.obolibrary.org/obo/Ontorel-Core/Ontorel-Core-full.owl"
      xmlns:dce="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -29,6 +30,27 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
+        <rdfs:label xml:lang="en">definition</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/Ontorel-Core_0000005 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/Ontorel-Core_0000005">
+        <obo:IAO_0000115 xml:lang="en">An annotation property used to tag relevant classes for ontorel generation.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">Three values for this annotation (WIP) :
+ - interest: means that the annotated class instances or associated data properties are of interest for a request.
+ - joint: means that the annotated clas or property is necessary for a jointure in the request.
+ - pivot: means that the annotated class is the pivot of the request.</rdfs:comment>
+        <rdfs:label xml:lang="en">ontorel specification</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- http://purl.org/dc/terms/description -->
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description">
@@ -50,6 +72,63 @@
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title">
         <rdfs:label>title</rdfs:label>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/Ontorel-Core_0000001 -->
+
+    <rdfs:Datatype rdf:about="http://purl.obolibrary.org/obo/Ontorel-Core_0000001">
+        <rdfs:label xml:lang="en">ISO8601DateTime</rdfs:label>
+    </rdfs:Datatype>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/Ontorel-Core_0000002 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/Ontorel-Core_0000002">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:label xml:lang="en">has textual value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/Ontorel-Core_0000003 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/Ontorel-Core_0000003">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:label xml:lang="en">has numerical value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/Ontorel-Core_0000004 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/Ontorel-Core_0000004">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:label xml:lang="en">has temporal value</rdfs:label>
+    </owl:DatatypeProperty>
     
 
 
