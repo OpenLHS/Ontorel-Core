@@ -1,0 +1,28 @@
+# PURL configuration for http://purl.obolibrary.org/obo/Ontorel-Core
+
+idspace: ONTOREL-CORE
+base_url: /obo/Ontorel-Core
+
+products:
+- Ontorel-Core.owl: https://raw.githubusercontent.com/OpenLHS/Ontorel-Core/main/Ontorel-Core.owl
+- Ontorel-Core.obo: https://raw.githubusercontent.com/OpenLHS/Ontorel-Core/main/Ontorel-Core.obo
+
+term_browser: ontobee
+example_terms:
+- ONTOREL-CORE_0000000
+
+entries:
+
+- prefix: /releases/
+  replacement: https://raw.githubusercontent.com/OpenLHS/Ontorel-Core/v
+
+- prefix: /tracker/
+  replacement: https://github.com/OpenLHS/Ontorel-Core/issues
+
+- prefix: /about/
+  replacement: http://www.ontobee.org/ontology/ONTOREL-CORE?iri=http://purl.obolibrary.org/obo/
+
+## generic fall-through, serve direct from github by default
+- prefix: /
+  replacement: https://raw.githubusercontent.com/OpenLHS/Ontorel-Core/main/
+

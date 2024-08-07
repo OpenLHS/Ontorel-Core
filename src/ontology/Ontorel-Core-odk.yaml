@@ -1,0 +1,13 @@
+id: Ontorel-Core
+title: Core ontology for ontorel
+github_org: OpenLHS
+repo: Ontorel-Core
+documentation:
+  documentation_system: mkdocs
+release_artefacts:
+  - full
+  - base
+primary_release: base
+export_formats:
+  - owl
+robot_java_args: "-Xmx8G"
