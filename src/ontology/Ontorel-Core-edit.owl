@@ -13,7 +13,6 @@ Annotation(dcterms:description "None")
 Annotation(dcterms:license <https://creativecommons.org/licenses/unspecified>)
 Annotation(dcterms:title "Core ontology for ontorel")
 
-Declaration(Class(<http://purl.obolibrary.org/obo/ONTOREL-CORE_0000000>))
 Declaration(DataProperty(<http://purl.obolibrary.org/obo/Ontorel-Core_0000002>))
 Declaration(DataProperty(<http://purl.obolibrary.org/obo/Ontorel-Core_0000003>))
 Declaration(DataProperty(<http://purl.obolibrary.org/obo/Ontorel-Core_0000004>))
@@ -80,15 +79,6 @@ SubDataPropertyOf(<http://purl.obolibrary.org/obo/Ontorel-Core_0000004> owl:topD
 # Datatype: <http://purl.obolibrary.org/obo/Ontorel-Core_0000001> (ISO8601DateTime)
 
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/Ontorel-Core_0000001> "ISO8601DateTime"@en)
-
-
-############################
-#   Classes
-############################
-
-# Class: <http://purl.obolibrary.org/obo/ONTOREL-CORE_0000000> (root node)
-
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ONTOREL-CORE_0000000> "root node"@en)
 
 
 )
