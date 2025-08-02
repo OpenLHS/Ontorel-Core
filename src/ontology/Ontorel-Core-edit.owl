@@ -22,6 +22,7 @@ Declaration(AnnotationProperty(dcterms:description))
 Declaration(AnnotationProperty(dcterms:license))
 Declaration(AnnotationProperty(dcterms:title))
 Declaration(Datatype(<http://purl.obolibrary.org/obo/Ontorel-Core_0000001>))
+Declaration(Datatype(<http://purl.obolibrary.org/obo/Ontorel-Core_0000006>))
 ############################
 #   Annotation Properties
 ############################
@@ -79,6 +80,10 @@ SubDataPropertyOf(<http://purl.obolibrary.org/obo/Ontorel-Core_0000004> owl:topD
 # Datatype: <http://purl.obolibrary.org/obo/Ontorel-Core_0000001> (ISO8601DateTime)
 
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/Ontorel-Core_0000001> "ISO8601DateTime"@en)
+
+# Datatype: <http://purl.obolibrary.org/obo/Ontorel-Core_0000006> (ISO8601Duration)
+
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/Ontorel-Core_0000006> "ISO8601Duration"@en)
 
 
 )
