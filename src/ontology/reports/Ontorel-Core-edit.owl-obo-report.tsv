@@ -4,6 +4,7 @@ WARN	missing_definition	ISO8601DateTime	definition
 WARN	missing_definition	has textual value	definition	
 WARN	missing_definition	has numerical value	definition	
 WARN	missing_definition	has temporal value	definition	
+WARN	missing_definition	ISO8601Duration	definition	
 WARN	missing_definition	description	definition	
 WARN	missing_definition	license	definition	
 WARN	missing_definition	title	definition	
